@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,44 +7,50 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  userId    Int     @id @default(autoincrement())
-  userGuid  String  @default(uuid())
-  userName  String
+model account {
+  balance                                           Float
+  UserId                                            Int
+  CurrencyId                                        Int
+  account_guid                                      String
+  account_id                                        Int           @id @default(autoincrement())
+  currency                                          currency      @relation(fields: [CurrencyId], references: [currency_id], map: "Account_CurrencyId_fkey")
+  user                                              user          @relation(fields: [UserId], references: [user_id], map: "Account_UserId_fkey")
+  transaction_transaction_DestinyAccountIdToaccount transaction[] @relation("transaction_DestinyAccountIdToaccount")
+  transaction_transaction_OriginAccountIdToaccount  transaction[] @relation("transaction_OriginAccountIdToaccount")
+
+  @@index([CurrencyId], map: "Account_CurrencyId_fkey")
+  @@index([UserId], map: "Account_UserId_fkey")
+}
+
+model currency {
+  currency_guid String
+  currency_id   Int       @id @default(autoincrement())
+  currency_name String
+  currency_code String
+  account       account[]
+}
+
+model transaction {
+  amount                                        Float
+  description                                   String?
+  OriginAccountId                               Int
+  DestinyAccountId                              Int
+  created                                       DateTime
+  transaction_guid                              String
+  transaction_id                                Int      @id @default(autoincrement())
+  account_transaction_DestinyAccountIdToaccount account  @relation("transaction_DestinyAccountIdToaccount", fields: [DestinyAccountId], references: [account_id], map: "Transaction_DestinyAccountId_fkey")
+  account_transaction_OriginAccountIdToaccount  account  @relation("transaction_OriginAccountIdToaccount", fields: [OriginAccountId], references: [account_id], map: "Transaction_OriginAccountId_fkey")
+
+  @@index([DestinyAccountId], map: "Transaction_DestinyAccountId_fkey")
+  @@index([OriginAccountId], map: "Transaction_OriginAccountId_fkey")
+}
+
+model user {
   password  String
   name      String
-  lastName  String
-  accounts  Account[]
-}
-
-model Currency {
-  currencyId      Int     @id @default(autoincrement())
-  currencyGuid    String  @default(uuid())
-  currencyName    String
-  currencySymbol  String
-  accounts        Account[]
-}
-
-model Account {
-  accountId                     Int     @id @default(autoincrement())
-  accountGuid                   String  @default(uuid())
-  balance                       Float
-  UserId                        Int
-  CurrencyId                    Int
-  User                          User     @relation(fields: [UserId], references: [userId])
-  Currency                      Currency @relation(fields: [CurrencyId], references: [currencyId])
-  transactionsOriginAccount     Transaction[] @relation("OriginAccount")
-  transactionsDestinyAccount    Transaction[] @relation("DestinyAccount")
-}
-
-model Transaction {
-  transactionId       Int     @id @default(autoincrement())
-  transactionGuid     String  @default(uuid())
-  amount              Float
-  dateTime            DateTime
-  description         String?
-  OriginAccountId     Int
-  DestinyAccountId    Int
-  OriginAccount       Account     @relation("OriginAccount", fields: [OriginAccountId], references: [accountId])
-  DestinyAccount      Account     @relation("DestinyAccount", fields: [DestinyAccountId], references: [accountId])
+  lastname  String
+  user_guid String
+  user_id   Int       @id @default(autoincrement())
+  username  String
+  account   account[]
 }
