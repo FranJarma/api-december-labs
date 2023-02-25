@@ -6,6 +6,48 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model User {
+  userId    Int     @id @default(autoincrement())
+  userGuid  String  @default(uuid())
+  userName  String
+  password  String
+  name      String
+  lastName  String
+  accounts  Account[]
+}
+
+model Currency {
+  currencyId      Int     @id @default(autoincrement())
+  currencyGuid    String  @default(uuid())
+  currencyName    String
+  currencySymbol  String
+  accounts        Account[]
+}
+
+model Account {
+  accountId                     Int     @id @default(autoincrement())
+  accountGuid                   String  @default(uuid())
+  balance                       Float
+  UserId                        Int
+  CurrencyId                    Int
+  User                          User     @relation(fields: [UserId], references: [userId])
+  Currency                      Currency @relation(fields: [CurrencyId], references: [currencyId])
+  transactionsOriginAccount     Transaction[] @relation("OriginAccount")
+  transactionsDestinyAccount    Transaction[] @relation("DestinyAccount")
+}
+
+model Transaction {
+  transactionId       Int     @id @default(autoincrement())
+  transactionGuid     String  @default(uuid())
+  amount              Float
+  dateTime            DateTime
+  description         String?
+  OriginAccountId     Int
+  DestinyAccountId    Int
+  OriginAccount       Account     @relation("OriginAccount", fields: [OriginAccountId], references: [accountId])
+  DestinyAccount      Account     @relation("DestinyAccount", fields: [DestinyAccountId], references: [accountId])
 }
