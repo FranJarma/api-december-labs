@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import { DateRange } from '../types/index';
 import { getReportsByUser } from './../services/ReportService';
 
 export const GetReportsByUser = async (req: Request, res: Response) => {
 
-    const dateRange: DateRange = req.body.dateRange;
+    const from: Date = req.body.from;
+    const to: Date = req.body.to || null;
 
-    const report = await getReportsByUser(dateRange);
+    const report = await getReportsByUser(from, to);
 
-    if (report) res.json(report);
+    res.send(report);
 }
