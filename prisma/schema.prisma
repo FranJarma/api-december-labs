@@ -23,11 +23,11 @@ model account {
 }
 
 model currency {
-  currency_guid String
-  currency_id   Int       @id @default(autoincrement())
-  currency_name String
-  currency_code String
-  account       account[]
+  currency_guid   String
+  currency_id     Int       @id @default(autoincrement())
+  currency_name   String
+  currency_symbol String
+  account         account[]
 }
 
 model transaction {

@@ -68,6 +68,6 @@ export const getReportsByUser = async (from: Date, to?: Date) => {
         return transactionsReport;
 
     } catch (error) {
-        console.log('Internal server error')
+        console.log(error);
     }
 }
