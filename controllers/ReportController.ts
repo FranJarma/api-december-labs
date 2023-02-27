@@ -4,8 +4,8 @@ import { sendHttpStatus } from '../helpers/sendHttpStatus';
 
 export const GetReportsByUser = async (req: Request, res: Response) => {
     try {
-        const from: Date = req.body.from;
-        const to: Date = req.body.to || null;
+        const from: string = req.body.from;
+        const to: string = req.body.to || new Date().toISOString().slice(0, 19).replace('T', ' ');
         const report = await getReportsByUser(from, to);
         sendHttpStatus(res, 200, report);
     } catch (error) {
