@@ -1,4 +1,4 @@
-import clienteAxios from '../adapters/axios';
+import axiosClient from '../adapters/axios';
 import prisma from '../adapters/prisma-client';
 
 export const getCurrencyById = async (id: number) => {
@@ -19,7 +19,7 @@ export const getCurrencyById = async (id: number) => {
 
 export const convertCurrencies = async (currencyFromSymbol: string, currencyToSymbol: string, amount: number) => {
     try {
-        const convertion = await clienteAxios.get(`https://api.apilayer.com/fixer/convert?to=${currencyToSymbol}&from=${currencyFromSymbol}&amount=${amount}`);
+        const convertion = await axiosClient.get(`https://api.apilayer.com/fixer/convert?to=${currencyToSymbol}&from=${currencyFromSymbol}&amount=${amount}`);
         return convertion.data.result;
     } catch (error) {
         console.log(error);
