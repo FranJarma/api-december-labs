@@ -1,4 +1,3 @@
-import { AxiosResponse } from 'axios';
 import clienteAxios from '../adapters/axios';
 import prisma from '../adapters/prisma-client';
 
