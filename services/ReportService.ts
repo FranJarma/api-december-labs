@@ -17,7 +17,7 @@ export const getReportsByUser = async (from: Date, to?: Date) => {
             INNER JOIN user AS UserDestinyAccount ON UserDestinyAccount.user_id = DestinyAccount.UserId
             WHERE UserOriginAccount.user_id = UserDestinyAccount.user_id
             AND transaction.created >= ${from} AND transaction.created <= ${to}
-            GROUP BY UserOriginAccount.username, WEEK(created)
+            GROUP BY UserOriginAccount.username, YEAR(created), WEEK(created)
             ORDER BY UserOriginAccount.username ASC, YEAR(created) ASC, WEEK(created) ASC
             ) t1
             INNER JOIN
@@ -30,7 +30,7 @@ export const getReportsByUser = async (from: Date, to?: Date) => {
             INNER JOIN user AS UserDestinyAccount ON UserDestinyAccount.user_id = DestinyAccount.UserId
             WHERE UserOriginAccount.user_id != UserDestinyAccount.user_id
             AND transaction.created >= ${from} AND transaction.created <= ${to}
-            GROUP BY UserOriginAccount.username, WEEK(created)
+            GROUP BY UserOriginAccount.username, YEAR(created), WEEK(created)
             ) t2
             ON t1.username = t2.username AND t1.Week = t2.Week;`
             return transactionsReport;
@@ -49,7 +49,7 @@ export const getReportsByUser = async (from: Date, to?: Date) => {
         INNER JOIN user AS UserDestinyAccount ON UserDestinyAccount.user_id = DestinyAccount.UserId
         WHERE UserOriginAccount.user_id = UserDestinyAccount.user_id
         AND transaction.created >= ${from}
-        GROUP BY UserOriginAccount.username, WEEK(created)
+        GROUP BY UserOriginAccount.username, YEAR(created), WEEK(created)
         ORDER BY UserOriginAccount.username ASC, YEAR(created) ASC, WEEK(created) ASC
         ) t1
         INNER JOIN
@@ -62,7 +62,7 @@ export const getReportsByUser = async (from: Date, to?: Date) => {
         INNER JOIN user AS UserDestinyAccount ON UserDestinyAccount.user_id = DestinyAccount.UserId
         WHERE UserOriginAccount.user_id != UserDestinyAccount.user_id
         AND transaction.created >= ${from}
-        GROUP BY UserOriginAccount.username, WEEK(created)
+        GROUP BY UserOriginAccount.username, YEAR(created), WEEK(created)
         ) t2
         ON t1.username = t2.username AND t1.Week = t2.Week;`
         return transactionsReport;

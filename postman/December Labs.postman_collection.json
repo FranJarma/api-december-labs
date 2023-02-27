@@ -1,0 +1,132 @@
+{
+	"info": {
+		"_postman_id": "3e2cfbc8-bf17-42e3-9ea9-0f259285f783",
+		"name": "December Labs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10350049"
+	},
+	"item": [
+		{
+			"name": "Get Transactions Report",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "from",
+							"value": "2022-01-01 08:58:24.000",
+							"type": "text"
+						},
+						{
+							"key": "to",
+							"value": "2023-01-01 08:58:24.000",
+							"type": "text"
+						},
+						{
+							"key": "userGuid",
+							"value": "c080d69c-2b27-44fb-b8ab-e7a4fa1514dc",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{LOCAL_ENDPOINT}}/api/report/transactions-report",
+					"host": [
+						"{{LOCAL_ENDPOINT}}"
+					],
+					"path": [
+						"api",
+						"report",
+						"transactions-report"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Currency Symbols",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "apikey",
+						"value": "xOsmRtKPCytksTcZzHFtHWj1O7wcAZ3m",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://api.apilayer.com/fixer/symbols",
+					"protocol": "https",
+					"host": [
+						"api",
+						"apilayer",
+						"com"
+					],
+					"path": [
+						"fixer",
+						"symbols"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create new Transfer",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userGuid\": \"c080d69c-2b27-44fb-b8ab-e7a4fa1514dc\",\r\n    \"accountFrom\": {\r\n        \"CurrencyId\": 3,\r\n        \"UserId\": 2,\r\n        \"account_id\": 3\r\n    },\r\n    \"accountTo\": {\r\n        \"CurrencyId\": 1,\r\n        \"UserId\": 2,\r\n        \"account_id\": 1\r\n    },\r\n    \"amount\": 250000,\r\n    \"date\": \"2023-02-27T11:05:23Z\",\r\n    \"description\": \"Lorem Ipsum\"\r\n}"
+				},
+				"url": {
+					"raw": "{{LOCAL_ENDPOINT}}/api/transfer",
+					"host": [
+						"{{LOCAL_ENDPOINT}}"
+					],
+					"path": [
+						"api",
+						"transfer"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "LOCAL_ENDPOINT",
+			"value": "localhost:3000"
+		}
+	]
+}

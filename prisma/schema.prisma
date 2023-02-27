@@ -11,7 +11,7 @@ model account {
   balance                                           Float
   UserId                                            Int
   CurrencyId                                        Int
-  account_guid                                      String
+  account_guid                                      String        @default(uuid())
   account_id                                        Int           @id @default(autoincrement())
   currency                                          currency      @relation(fields: [CurrencyId], references: [currency_id], map: "Account_CurrencyId_fkey")
   user                                              user          @relation(fields: [UserId], references: [user_id], map: "Account_UserId_fkey")
@@ -23,7 +23,7 @@ model account {
 }
 
 model currency {
-  currency_guid   String
+  currency_guid   String    @default(uuid())
   currency_id     Int       @id @default(autoincrement())
   currency_name   String
   currency_symbol String
@@ -36,7 +36,7 @@ model transaction {
   OriginAccountId                               Int
   DestinyAccountId                              Int
   created                                       DateTime
-  transaction_guid                              String
+  transaction_guid                              String   @default(uuid())
   transaction_id                                Int      @id @default(autoincrement())
   account_transaction_DestinyAccountIdToaccount account  @relation("transaction_DestinyAccountIdToaccount", fields: [DestinyAccountId], references: [account_id], map: "Transaction_DestinyAccountId_fkey")
   account_transaction_OriginAccountIdToaccount  account  @relation("transaction_OriginAccountIdToaccount", fields: [OriginAccountId], references: [account_id], map: "Transaction_OriginAccountId_fkey")
@@ -49,7 +49,7 @@ model user {
   password  String
   name      String
   lastname  String
-  user_guid String
+  user_guid String    @default(uuid())
   user_id   Int       @id @default(autoincrement())
   username  String
   account   account[]
