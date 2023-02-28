@@ -3,6 +3,7 @@
 
 Repository for December Labs technical assesment.
 
+Note: To run this project you must have Docker Desktop installed in your PC.
 
 ## Run Locally
 
@@ -18,13 +19,13 @@ Go to the project directory
   cd api-december-labs
 ```
 
+Create .env file and populate it
+
 Install dependencies
 
 ```bash
   npm install
 ```
-
-Create .env file and populate it
 
 Start the server with the following command
 
