@@ -92,14 +92,6 @@ To run this project, you will need to add the following environment variables to
 
 There is a file called December Labs.postman_collection in the repository with a Postman collection with all endpoints.
 
-### Query Dockerized DB
-
-```Transactions: docker exec -it CONTAINER_NAME mysql -p -e 'SELECT * from transactions' december-labs```
-
-Note: CONTAINER_NAME has to be copied from Docker Desktop. In the container section once the docker-compose operation is finished. For example:
-
-```613fe85f593af02883c39a983e0e4f6abfedec20386891f42276868ec8dc24f4```
-
 ## Authors
 
 - [@FranJarma](https://www.github.com/FranJarma)
