@@ -81,6 +81,15 @@ To run this project, you will need to add the following environment variables to
 | `date`      | `string` | **Required**. Date string value |
 | `description`      | `string` | **Optional**. Transfer description |
 
+#### Get transfers ordered by creation date
+
+```http
+  GET /api/transfer
+```
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `userGuid`      | `string` | **Required**. Request user guid |
+
 There is a file called December Labs.postman_collection in the repository with a Postman collection with both endpoints.
 
 ### Query Dockerized DB
