@@ -20,4 +20,10 @@ export const sendHttpStatus = (res: Response, code: number, data?: any) => {
             data: data
         });
     }
+    if (code === 204) {
+        return res.status(code).send({
+            msg: 'No content',
+            code: code
+        });
+    }
 }

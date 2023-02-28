@@ -15,8 +15,8 @@ model account {
   account_id                                        Int           @id @default(autoincrement())
   currency                                          currency      @relation(fields: [CurrencyId], references: [currency_id], map: "Account_CurrencyId_fkey")
   user                                              user          @relation(fields: [UserId], references: [user_id], map: "Account_UserId_fkey")
-  transaction_transaction_DestinyAccountIdToaccount transaction[] @relation("transaction_DestinyAccountIdToaccount")
-  transaction_transaction_OriginAccountIdToaccount  transaction[] @relation("transaction_OriginAccountIdToaccount")
+  transfer_transfer_DestinyAccountIdToaccount transfer[] @relation("transfer_DestinyAccountIdToaccount")
+  transfer_transfer_OriginAccountIdToaccount  transfer[] @relation("transfer_OriginAccountIdToaccount")
 
   @@index([CurrencyId], map: "Account_CurrencyId_fkey")
   @@index([UserId], map: "Account_UserId_fkey")
@@ -30,19 +30,19 @@ model currency {
   account         account[]
 }
 
-model transaction {
+model transfer {
   amount                                        Float
   description                                   String?
   OriginAccountId                               Int
   DestinyAccountId                              Int
   created                                       DateTime
-  transaction_guid                              String   @default(uuid())
-  transaction_id                                Int      @id @default(autoincrement())
-  account_transaction_DestinyAccountIdToaccount account  @relation("transaction_DestinyAccountIdToaccount", fields: [DestinyAccountId], references: [account_id], map: "Transaction_DestinyAccountId_fkey")
-  account_transaction_OriginAccountIdToaccount  account  @relation("transaction_OriginAccountIdToaccount", fields: [OriginAccountId], references: [account_id], map: "Transaction_OriginAccountId_fkey")
+  transfer_guid                              String   @default(uuid())
+  transfer_id                                Int      @id @default(autoincrement())
+  account_transfer_DestinyAccountIdToaccount account  @relation("transfer_DestinyAccountIdToaccount", fields: [DestinyAccountId], references: [account_id], map: "transfer_DestinyAccountId_fkey")
+  account_transfer_OriginAccountIdToaccount  account  @relation("transfer_OriginAccountIdToaccount", fields: [OriginAccountId], references: [account_id], map: "transfer_OriginAccountId_fkey")
 
-  @@index([DestinyAccountId], map: "Transaction_DestinyAccountId_fkey")
-  @@index([OriginAccountId], map: "Transaction_OriginAccountId_fkey")
+  @@index([DestinyAccountId], map: "transfer_DestinyAccountId_fkey")
+  @@index([OriginAccountId], map: "transfer_OriginAccountId_fkey")
 }
 
 model user {

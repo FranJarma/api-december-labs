@@ -10,7 +10,7 @@ export const createTransfer = async (transfer: Transfer) => {
         const currencyFrom = await getCurrencyById(accountFrom.CurrencyId);
         const currencyTo = await getCurrencyById(accountTo.CurrencyId);
 
-        const newTransfer = await prisma.transaction.create({
+        const newTransfer = await prisma.transfer.create({
             data: {
                 amount: accountFrom.CurrencyId !== accountTo.CurrencyId ? await convertCurrencies(currencyFrom?.currency_symbol ?? 'URU', currencyTo?.currency_symbol ?? 'USD', accountToUser?.user_guid !== userGuid ? amount + (amount * 0.1) : amount) : amount,
                 created: date,
@@ -22,6 +22,21 @@ export const createTransfer = async (transfer: Transfer) => {
 
         return newTransfer;
 
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const getTransfers = async () => {
+    try {
+        const transfers = await prisma.transfer.findMany({
+            orderBy: [
+                {
+                    created: 'desc'
+                }
+            ]
+        });
+        return transfers;
     } catch (error) {
         console.log(error);
     }

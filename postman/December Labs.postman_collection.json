@@ -107,7 +107,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"userGuid\": \"c080d69c-2b27-44fb-b8ab-e7a4fa1514dc\",\r\n    \"accountFrom\": {\r\n        \"CurrencyId\": 3,\r\n        \"UserId\": 2,\r\n        \"account_id\": 3\r\n    },\r\n    \"accountTo\": {\r\n        \"CurrencyId\": 1,\r\n        \"UserId\": 2,\r\n        \"account_id\": 1\r\n    },\r\n    \"amount\": 250000,\r\n    \"date\": \"2023-02-27T11:05:23Z\",\r\n    \"description\": \"Lorem Ipsum\"\r\n}"
+					"raw": "{\r\n    \"userGuid\": \"c080d69c-2b27-44fb-b8ab-e7a4fa1514dc\",\r\n    \"accountFrom\": {\r\n        \"CurrencyId\": 3,\r\n        \"UserId\": 2,\r\n        \"account_id\": 3\r\n    },\r\n    \"accountTo\": {\r\n        \"CurrencyId\": 1,\r\n        \"UserId\": 2,\r\n        \"account_id\": 1\r\n    },\r\n    \"amount\": 3000,\r\n    \"date\": \"2023-02-27T14:19:23Z\",\r\n    \"description\": \"Lorem Ipsum\"\r\n}"
 				},
 				"url": {
 					"raw": "{{LOCAL_ENDPOINT}}/api/transfer",
@@ -119,6 +119,14 @@
 						"transfer"
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get transfers",
+			"request": {
+				"method": "GET",
+				"header": []
 			},
 			"response": []
 		}
