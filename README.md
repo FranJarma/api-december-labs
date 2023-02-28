@@ -90,7 +90,7 @@ To run this project, you will need to add the following environment variables to
 | :-------- | :------- | :-------------------------------- |
 | `userGuid`      | `string` | **Required**. Request user guid |
 
-There is a file called December Labs.postman_collection in the repository with a Postman collection with both endpoints.
+There is a file called December Labs.postman_collection in the repository with a Postman collection with all endpoints.
 
 ### Query Dockerized DB
 
