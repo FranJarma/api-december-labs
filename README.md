@@ -18,14 +18,9 @@ Go to the project directory
   cd api-december-labs
 ```
 
-Install dependencies
-
-```bash
-  npm install
-```
 Create .env file and populate it
 
-Start the server with the following command
+Install dependencies and start the server with the following command
 
 ```bash
   docker-compose up
